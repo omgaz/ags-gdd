@@ -1,4 +1,4 @@
-# README for a newly created project.
+# Adventure Game Studio Game Design Document.
 
 There are a couple of things you should do first, before you can use all of Git's power:
 
