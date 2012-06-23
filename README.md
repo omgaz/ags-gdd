@@ -2,4 +2,4 @@
 
 ![Mockup of visual layout for the AGS GDD](http://omgaz.co.uk/img/ags-gdd-v2.png "Mockup of visual layout for the AGS GDD")
 
-Decided to go the Django/Python route for this one. It sounded worthwhile.
+Decided to go the NodeJS just because I'm familiar with it and reckon I can get it done quiker than learning something new, like Django.
