@@ -1,4 +1,4 @@
-var crypto,
+var crypto = require('crypto'),
     User,
     Role,
     Story,
@@ -40,7 +40,7 @@ function defineModels(mongoose, fn) {
         "hashed_password": String,
         "salt": String,
         "created_on": { type: Date, default: Date.now },
-        "last_login" Date,
+        "last_login": Date,
         "roles" : [Role],
         "current_story": ObjectId,
         "tasks": [Task],
@@ -293,9 +293,21 @@ function defineModels(mongoose, fn) {
         next();
     });
     
-
-    Task,
-    Message
+    /* Create Schemas and Export */
+    mongoose.model('User', User);
+    mongoose.model('Role', Role);
+    mongoose.model('Story', Story);
+    mongoose.model('Task', Task);
+    mongoose.model('Message', Message);
+    mongoose.model('Act', Act);
+    mongoose.model('Puzzle', Puzzle);
+    mongoose.model('Dialog', Dialog);
+    mongoose.model('Location', Location);
+    mongoose.model('Character', Character);
+    mongoose.model('Item', Item);
+    
+    
+    fn();
 }
 
 
