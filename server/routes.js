@@ -41,10 +41,48 @@ if(typeof User === "undefined") {
     throw new Error("User model is not defined.");
 }
 
+function loadUser(req, res, next) {
+  if (req.session.user_id) {
+    User.findById(req.session.user_id, function(err, user) {
+      if (user) {
+        req.currentUser = user;
+        next();
+      } else {
+        res.redirect('/');
+      }
+    });
+  } else {
+    res.redirect('/');
+  }
+}
+
 function defineRoutes(app) {
     
     app.get("/", function (req, res) {
       res.render("public/home")
+    });
+
+    app.post("/login", function (req, res) {
+
+      User.findOne({ email: req.body.e }, function(err, user) {
+        if (user && user.authenticate(req.body.p)) {
+          req.session.user_id = user.id;
+          res.send("Success");
+        } else {
+          // TODO: need to save this information
+          user.failed_login_attempts = user.failed_login_attempts++;
+
+          if(user.failed_login_attempts == 3) {
+            res.send("Blocked");
+          } else {
+            res.send("Failed");
+          }
+        }
+      }); 
+    });
+
+    app.get("/project", loadUser, function(req, res, next) {
+      res.send("project");
     });
     
     app.get("/db-test", function(req, res) {

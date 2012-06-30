@@ -44,7 +44,9 @@ function defineModels(mongoose, fn) {
         "roles" : [Role],
         "current_story": ObjectId,
         "tasks": [Task],
-        "messages": [Message]
+        "messages": [Message],
+
+        "failed_login_attempts": Number
     });
     
     User.virtual('id').get(function() {
