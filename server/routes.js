@@ -44,7 +44,7 @@ if(typeof User === "undefined") {
 function defineRoutes(app) {
     
     app.get("/", function (req, res) {
-      res.render("/public/home")
+      res.render("public/home")
     });
     
     app.get("/db-test", function(req, res) {

@@ -7,7 +7,7 @@ var PORT_NO = process.env.C9_PORT;
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
-app.use(express.static(__dirname + '../client'));
+app.use(express.static(__dirname + '/../client'));
 
 
 routes.defineRoutes(app);
