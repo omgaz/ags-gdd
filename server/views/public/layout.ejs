@@ -1,0 +1,109 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="./font/stylesheet.css">
+		<link rel="stylesheet" type="text/css" href="./font/font-awesome.css">
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+
+		<script type="text/javascript" src="./js/jquery.js"></script>
+		<!--[if gte IE 9]>
+		  <style type="text/css">
+		    .gradient {
+		       filter: none;
+		    }
+		  </style>
+		<![endif]-->
+		<style>
+			html, body {
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+			    font-family: 'PT Sans', sans-serif;
+			    font-size: 14px;
+			    line-height: 20px;
+			    background-color: #fff;
+			}
+
+			#title {
+				width: 460px;
+				margin: 0 auto;
+				margin-top: 100px;
+			}
+
+			h1 {
+				font: 80px 'LeagueGothicRegular';
+				line-height: 80px;
+				margin: 0 20px 20px 10px;
+				text-transform: uppercase;
+				color: whiteSmoke;
+				text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
+			}
+
+			#login, #actions {
+				text-align: center;
+			}
+
+			#actions {
+				margin-top: 20px;
+			}
+
+			#actions a {
+				margin: 0 10px;
+			}
+
+			#login input {
+				height: 40px;
+				line-height: 40px;
+			}
+
+			.input-prepend .add-on, .input-append .add-on {
+display: inline-block;
+width: auto;
+height: 30px;
+min-width: 30px;
+padding: 4px 5px;
+font-weight: normal;
+line-height: 30px;
+text-align: center;
+text-shadow: 0 1px 0 white;
+vertical-align: middle;
+background-color: #EEE;
+border: 1px solid #CCC;
+}
+
+.input-prepend, .input-append {
+margin-bottom: 10px;
+}
+
+.alert .close {
+	position: relative;
+right: -21px;
+line-height: 30px;
+}
+
+		</style>
+	</head>
+
+	<body>
+		
+		<div id="title">
+			<h1><span class="icon-briefcase"></span> GDD Assistant</h1>
+		</div>
+
+		<div id="content">
+			<%- body %>
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		(function($) {
+    		$(document).ready(function(){
+    			
+    		});
+		    
+		})(jQuery);
+
+	</script>
+	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+</html>
