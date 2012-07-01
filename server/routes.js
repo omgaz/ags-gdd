@@ -100,11 +100,11 @@ function defineRoutes(app) {
     });
 
 
-    app.post("/logout", loadUser, function (req, res, next)) {
+    app.get("/logout", loadUser, function (req, res, next) {
       req.session.user_id = null;
       req.currentUser = null;
       res.redirect("/");
-    };
+    });
 
 
     app.post("/register", function (req, res) {

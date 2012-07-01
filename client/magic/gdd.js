@@ -1,6 +1,8 @@
 (function($) {
 	$(document).ready(function(){
 
+		var errorHTML = '<div class="alert alert-error"><button type="button" class="close icon-remove-sign" data-dismiss="alert"></button><strong>Oh noes!</strong> <span></span></div>'
+
 
 		$("body").delegate("a.btn:not(:disabled)", "click", function(e){
 			var $this = $(this);
@@ -15,7 +17,7 @@
 		function register() {
 
 			var $this = $(this);
-
+			$("button.close").trigger("click");
 			$.post("register", {e:$("#email").val(),p:$("#password").val()},function(responseJSON) {
 				console.log(responseJSON);
 
@@ -24,6 +26,9 @@
 						window.location = "/"
 						break;
 					case "error":
+						var $error = $(errorHTML);
+						$error.find("span").text(responseJSON.err);
+						$("#content").prepend($error);
 						$this.prop("disabled", false).find("span").text(' Register');
 						$this.click(register);
 						console.log(responseJSON.err);
@@ -35,6 +40,7 @@
 
 		function login() {
 			var $this = $(this);
+			$("button.close").trigger("click");
 
 			$.post("login", {e:$("#email").val(),p:$("#password").val()},function(responseJSON) {
 				console.log(responseJSON);
@@ -44,6 +50,9 @@
 						window.location = "/"
 						break;
 					case "error":
+						var $error = $(errorHTML);
+						$error.find("span").text(responseJSON.err);
+						$("#content").prepend($error);
 						$this.prop("disabled", false).find("span").text(' Login');
 						$this.click(login);
 						console.log(responseJSON.err);
@@ -51,6 +60,8 @@
 				}
 			});
 		}
+
+		$("body").delegate("button.close", "click", function(){ $(this).parent().remove(); });
 
 
 		$("#btnRegister").click(register);
