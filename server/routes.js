@@ -42,7 +42,12 @@ if(typeof User === "undefined") {
 }
 
 function loadUser(req, res, next) {
-  if (req.session.user_id) {
+
+  if(req.path === "/" && !req.session.user_id ) {
+    res.render("public/home");
+  }
+
+  else if (req.session.user_id) {
     User.findById(req.session.user_id, function(err, user) {
       if (user) {
         req.currentUser = user;
@@ -51,15 +56,17 @@ function loadUser(req, res, next) {
         res.redirect('/');
       }
     });
-  } else {
+  }
+
+  else {
     res.redirect('/');
   }
 }
 
 function defineRoutes(app) {
     
-    app.get("/", function (req, res) {
-      res.render("public/home")
+    app.get("/", loadUser, function (req, res, next) {
+      res.send("project");
     });
 
     app.post("/login", function (req, res) {
@@ -67,19 +74,38 @@ function defineRoutes(app) {
       User.findOne({ email: req.body.e }, function(err, user) {
         if (user && user.authenticate(req.body.p)) {
           req.session.user_id = user.id;
-          res.send("Success");
+          res.json({
+            "status": "ok"
+          });
         } else {
           // TODO: need to save this information
-          user.failed_login_attempts = user.failed_login_attempts++;
+          if(user) {
+            user.failed_login_attempts = user.failed_login_attempts++;
 
-          if(user.failed_login_attempts == 3) {
-            res.send("Blocked");
-          } else {
-            res.send("Failed");
+            if(user.failed_login_attempts == 3) {
+              res.json({
+                "status": "error",
+                "err": "Too many failed logins, please contact support."
+              });
+            }
+          }
+          else {
+            res.json({
+              "status": "error",
+              "err": "Incorrect login details."
+            });
           }
         }
       }); 
     });
+
+
+    app.post("/logout", loadUser, function (req, res, next)) {
+      req.session.user_id = null;
+      req.currentUser = null;
+      res.redirect("/");
+    };
+
 
     app.post("/register", function (req, res) {
       var user = new User({
@@ -104,9 +130,6 @@ function defineRoutes(app) {
       }); 
     });
 
-    app.get("/project", loadUser, function(req, res, next) {
-      res.send("project");
-    });
     
     app.get("/db-test", function(req, res) {
         console.log("Hello World.");
