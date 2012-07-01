@@ -85,7 +85,7 @@
 
 		$("body").delegate("button.close", "click", function(){ $(this).parent().remove(); });
 
-		$("#btnNewStory").clicknewStory);
+		$("#btnNewStory").click(newStory);
 		$("#btnRegister").click(register);
 		$("#btnLogin").click(login);
 	});

@@ -52,12 +52,12 @@ function loadUser(req, res, next) {
 
       if (user) {
         req.currentUser = user;
-
-        if(user.current_story) {
+        console.log("user authenticated", req.currentUser);
+        if(user.current_story || req.path == '/servlet/new_story') {
           next();
         }
         else {
-          res.render('/system/new_story');
+          res.render('system/new_story');
         }
 
         
@@ -140,11 +140,16 @@ function defineRoutes(app) {
     });
 
     app.post("/servlet/new_story", loadUser, function(req, res, next){
-      var story = new Story(req.body);
-      story.save(function (err, story) {
-        User.findOne({id: req.currentUser.id}, function (err, user) {
+      var newStory = new Story(req.body);
+
+      newStory.save(function (storyErr, story) {
+        console.log("story err", storyErr);
+        console.log("req.currentUser", req.currentUser);
+        User.findOne({id: req.currentUser.id}, function (userFindErr, user) {
+          console.log("user err", userFindErr);
           user.current_story = story.id;
-          user.save(function() {
+          user.save(function(userErr, user) {
+            console.log("user err", userErr);
             res.json({
               "status": "ok"
             })
