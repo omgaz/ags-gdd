@@ -81,6 +81,29 @@ function defineRoutes(app) {
       }); 
     });
 
+    app.post("/register", function (req, res) {
+      var user = new User({
+        email: req.body.e,
+        password: req.body.p
+      });
+      user.save(function(err, user) {
+        if(!!err) {
+          if(err.code == "11000") {
+            res.json({'status': 'error','err':'Email address is already registered.'});
+          }
+          else {
+            res.json({'status':'error', 'err':'An error has occured'});
+          }
+        }
+        else {
+          req.session.user_id = user.id;
+          res.json({
+            status: "ok"
+          });
+        }
+      }); 
+    });
+
     app.get("/project", loadUser, function(req, res, next) {
       res.send("project");
     });
