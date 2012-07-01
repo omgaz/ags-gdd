@@ -44,14 +44,23 @@ if(typeof User === "undefined") {
 function loadUser(req, res, next) {
 
   if(req.path === "/" && !req.session.user_id ) {
-    res.render("public/home");
+    res.render("system/home");
   }
 
   else if (req.session.user_id) {
     User.findById(req.session.user_id, function(err, user) {
+
       if (user) {
         req.currentUser = user;
-        next();
+
+        if(user.current_story) {
+          next();
+        }
+        else {
+          res.render('/system/new_story');
+        }
+
+        
       } else {
         res.redirect('/');
       }
@@ -128,6 +137,20 @@ function defineRoutes(app) {
           });
         }
       }); 
+    });
+
+    app.post("/servlet/new_story", loadUser, function(req, res, next){
+      var story = new Story(req.body);
+      story.save(function (err, story) {
+        User.findOne({id: req.currentUser.id}, function (err, user) {
+          user.current_story = story.id;
+          user.save(function() {
+            res.json({
+              "status": "ok"
+            })
+          });
+        });
+      });
     });
 
     

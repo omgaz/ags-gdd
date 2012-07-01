@@ -61,9 +61,31 @@
 			});
 		}
 
+		function newStory() {
+			var $this = $(this);
+			$("button.close").trigger("click");
+			$.post("servlet/new_story", {name:$("#name").val(),},function(responseJSON) {
+				console.log(responseJSON);
+
+				switch (responseJSON.status) {
+					case "ok":
+						window.location = "/"
+						break;
+					case "error":
+						var $error = $(errorHTML);
+						$error.find("span").text(responseJSON.err);
+						$("#content").prepend($error);
+						$this.prop("disabled", false).find("span").text(' Register');
+						$this.click(register);
+						console.log(responseJSON.err);
+						break;
+				}
+			});
+		}
+
 		$("body").delegate("button.close", "click", function(){ $(this).parent().remove(); });
 
-
+		$("#btnNewStory").clicknewStory);
 		$("#btnRegister").click(register);
 		$("#btnLogin").click(login);
 	});
