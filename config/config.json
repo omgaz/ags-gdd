@@ -1,0 +1,17 @@
+{
+  "development": {
+    "db": {
+      "uri": "mongodb://omgaz.co.uk:27017/gdd-dev"
+    }
+  },
+  "staging": {
+    "db": {
+      "uri": "mongodb://omgaz.co.uk:27017/gdd-staging"
+    }
+  },
+  "production": {
+    "db": {
+      "uri": "mongodb://omgaz.co.uk:27017/gdd-production"
+    }
+  }
+}

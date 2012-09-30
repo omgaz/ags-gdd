@@ -1,0 +1,29 @@
+.top-margin {
+	margin-top: 150px;
+}
+
+.hero-unit.hero-light {
+	background-color: #FFF;
+}
+
+.hero-unit form {
+	padding: 0 25px;
+}
+
+.form-actions.dark {
+	background-color: #EEE;
+	border-top: 1px solid #C4C4C4;
+}
+
+.input-prepend .add-on, input[type=text], input[type=email], input[type=password] {
+	height: 25px !important;
+	line-height: 25px !important;
+}
+
+.form-actions .checkbox {
+	float: left;
+}
+
+.centre-text {
+	text-align: center;
+}

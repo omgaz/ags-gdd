@@ -1,9 +1,0 @@
-{
-    "name": "ags-gdd",
-    "dependencies": {
-        "express":      "2.5.x",
-        "mongoose":     "2.7.x",
-        "connect-mongodb": "1.1.x",
-        "ejs": 			"0.7.x"
-    }
-}
