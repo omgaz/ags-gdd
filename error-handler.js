@@ -46,25 +46,29 @@ function bootErrorHandler(app) {
   // configure() blocks to provide introspection when
   // in the development environment.
 
-  app.error(function(err, req, res, next){
-    if (err instanceof NotFound){
-      console.log(err.stack);
-      res.render('404', {
-        status: 404,
-        error: err,
-        showStack: app.settings.showStackError,
-        title: 'Oops! The page you requested desn\'t exist'
-      })
+  app.use(function(err, req, res, next){
+    if(err) {
+      if (err instanceof NotFound){
+        console.log(err.stack);
+        res.render('404', {
+          status: 404,
+          error: err,
+          showStack: app.settings.showStackError,
+          title: 'Oops! The page you requested desn\'t exist'
+        });
+      }
+      else {
+        console.log(err.stack);
+        res.render('500', {
+          status: 500,
+          error: err,
+          showStack: app.settings.showStackError,
+          title: 'Oops! Something went wrong!'
+        });
+      }
+    } else {
+      next();
     }
-    else {
-      console.log(err.stack);
-      res.render('500', {
-        status: 500,
-        error: err,
-        showStack: app.settings.showStackError,
-        title: 'Oops! Something went wrong!'
-      })
-    }
-  })
+  });
 
 }

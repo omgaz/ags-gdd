@@ -14,6 +14,7 @@ require('./db-connect');                // Bootstrap db connection
 // Bootstrap models
 var models_path = __dirname + '/app/models',
     model_files = fs.readdirSync(models_path);
+
 model_files.forEach(function (file) {
   if (file == 'user.js') {
     User = require(models_path + '/' + file);
@@ -22,15 +23,16 @@ model_files.forEach(function (file) {
   }
 })
 
-var app = express.createServer();       // express app
+var app = express();                    // express app
 require('./settings').boot(app);        // Bootstrap application settings
 
 // Bootstrap controllers
 var controllers_path = __dirname + '/app/controllers',
     controller_files = fs.readdirSync(controllers_path);
+
 controller_files.forEach(function (file) {
-  require( controllers_path + '/' + file )(app);
-})
+  require(controllers_path + '/' + file)(app, auth);
+});
 
 require('./error-handler').boot(app);   // Bootstrap custom error handler
 

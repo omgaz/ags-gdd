@@ -1,9 +1,26 @@
+@import url(http://fonts.googleapis.com/css?family=Lora|Oswald);
+@import url(./bootstrap.min.css);
+@import url(./font-awesome.css);
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+body {
+	background: url(../img/bg.png) repeat 0 0;
+}
+
 .top-margin {
 	margin-top: 150px;
 }
 
 .hero-unit.hero-light {
-	background-color: #FFF;
+	background-color: transparent;
 }
 
 .hero-unit form {
@@ -13,6 +30,31 @@
 .form-actions.dark {
 	background-color: #EEE;
 	border-top: 1px solid #C4C4C4;
+}
+
+input[type=file] {
+	border: 1px solid #CCC;
+	padding: 4px;
+	width: 450px;
+}
+
+div.details .form-horizontal .control-label {
+	text-align: left !important;
+}
+
+div.details .control-group {
+	margin: 20px !important;
+}
+
+div.details .form-horizontal .help-block {
+	font-size: 12px;
+	margin-top: 2px;
+	color: #777;
+}
+
+div.details .form-horizontal label.checkbox {
+	font-size: 12px;
+	color: #777;
 }
 
 .input-prepend .add-on, input[type=text], input[type=email], input[type=password] {
@@ -26,4 +68,372 @@
 
 .centre-text {
 	text-align: center;
+}
+
+h1, h2 {
+	font-family: "Oswald";
+}
+
+h2 small {
+	font-family: "Oswald";
+}
+
+*, input, button, select, textarea {	
+	font-family: "Lora";
+}
+
+.navbar ul.nav.menu li {
+margin-left: 10px;
+}
+
+.pull-right {
+	float: right !important;
+}
+
+div.navbar {
+	background: #E8E8E8;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(232, 232, 232, 1)), color-stop(100%,rgba(201, 201, 201, 1)));
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', endColorstr='#c9c9c9',GradientType=0 );
+	border-top: 1px solid #C9C9C9;
+	border-bottom: 1px solid #9A9A9A;
+	height: 50px;
+	text-shadow: 0px 1px 1px white;
+}
+
+div.navbar a.brand {
+	text-shadow: 1px 1px 0px white;
+	color: rgba(0, 0, 0, 0.4);
+	font-family: "Oswald";
+	font-weight: bold;
+	font-size: 25px;
+	line-height: 46px;
+	padding: 0 10px;
+	margin-right: 10px;
+	float: left;
+}
+
+div.navbar a.brand:hover {
+	color: #52A8E8;
+	-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(#52A8E8), to(#377AD0));
+}
+
+div.navbar a.navlink {
+	color: #777;
+	-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 1)));
+}
+
+.navbar ul.nav {
+	float: left;
+	height: 50px;
+	list-style: none;
+}
+
+.navbar ul.nav li {
+	float: left;
+}
+
+.navbar ul.nav.menu li {
+	line-height: 42px;
+	margin-left: 24px;
+	font-size: 22px;
+}
+
+.navbar ul.nav > li > a {
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .90);
+	display: block;
+	padding: 4px 0px;
+	position: relative;
+	z-index: 1;
+	font-weight: 700;
+	color: #777;
+	-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 1)));
+}
+
+.navbar ul.nav > li.active > a, .navbar ul.nav > li > a:hover, .navbar ul.nav > li.active > a, .navbar ul.nav > li.active > a:hover {
+	color: #52A8E8;
+	-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(#52A8E8), to(#377AD0));
+}
+
+.navbar ul.nav > li.active > a {
+	font-size: 30px;
+	margin: 0 -10px;
+}
+
+.navbar  ul.nav > li, .navbar .nav > li.dropdown > a {
+	line-height: 50px;
+}
+
+.navbar ul.nav > li.dropdown {
+	padding-right: 10px;
+}
+
+.navbar .nav > li.dropdown > a {
+	padding: 0 0 0 5px;
+}
+
+.navbar .nav > li.dropdown > a > b.caret {
+	vertical-align: middle;
+	margin: 0;
+	opacity: 1;
+}
+
+.navbar .dropdown-menu {
+	display: none;
+}
+
+.navbar .dropdown i.caret {
+	margin: -3px;
+}
+
+.navbar ul.nav > li.dropdown > a {
+	color: #555;
+}
+
+i.caret:before {
+	vertical-align: top;
+}
+
+.subnav {
+	height: 25px;
+	line-height: 25px;
+	padding: 0 10px;
+	background-color: #EFEFEF;
+	border-bottom: 1px solid #CDCDCD;
+	font-size: 14px;
+}
+
+.subnav ul.nav {
+	line-height: 25px;
+	list-style: none;
+}
+
+.subnav ul.nav li {
+	margin: 0 8px;
+	float: left;
+}
+
+.subnav ul.nav li.active a {
+	color: #52A8E8;
+	font-weight: bold;
+}
+
+.subnav ul.nav li a {
+	color: #666666;
+}
+
+.subnav ul.nav li a:hover {
+	color: #52A8E8;
+}
+
+#palette {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	top: 78px;
+	background-color: yellow;
+}
+
+div.sections {
+	width: 60px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	background-color: #33393C;
+	border-right: 1px solid #292929;
+}
+
+.sections .gift {
+	text-align: center;
+	margin-top: 60px;
+	font-size: 12px;
+}
+
+.sections .gift a {
+	color: #C66;
+	-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 1)));
+}
+
+.sections .gift a:hover {
+	color: #d77;
+	-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 1)));
+}
+
+.sections .gift a i {
+	font-size: 28px;
+}
+
+.sections .gift p, .items ul li .character {
+	font-family: "Oswald";
+}
+
+.sections ul {
+	list-style: none;
+	font-size: 28px;
+}
+
+.sections ul li {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.sections ul li a {
+	color: #B1B1B1;
+	-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 1)));
+}
+
+.sections ul li.active {
+	font-size: 32px;
+}
+
+.sections ul li.active a, .sections ul li a:hover {
+	color: #52A8E8;
+	-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(#52A8E8), to(#377AD0));
+}
+
+div.items {
+	background-color: #F9F9F9;
+	width: 250px;
+	position: absolute;
+	left: 61px;
+	top: 0;
+	bottom: 0;
+}
+
+.items ul {
+	list-style: none;
+}
+
+.items ul li{
+	background-color: #EDEDED;
+	border-bottom: 1px solid #C9C9C9;
+}
+
+.items ul li:hover{
+	background-color: #F2F2F2;
+}
+
+.items ul li a {
+	padding: 10px;
+	display: block;
+}
+
+.items ul li .character {
+	font-size: 16px;
+	color: #C66;
+	text-shadow: 1px 1px 0px white;
+}
+.items ul li p {
+	font-size: 13px;
+	margin-top: 8px;
+	color: #222;
+}
+
+.item.active {
+	background-color: #FEFEFE;
+	border-right: 1px solid #FEFEFE;
+	width: 250px;
+	z-index: 1;
+	position: relative;
+}
+
+.item.active .character {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.item.active p {
+	font-size: 14px;
+}
+
+.item.active a:hover {
+	background-color: #FEFEFE;
+}
+
+div.details {
+	border-left: 1px solid #C9C9C9;
+	background-color: #FEFEFE;
+	position: absolute;
+	left: 311px;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+.details .form-body {
+	position: absolute;
+	top: 0;
+	bottom: 64px;
+	right: 0;
+	left: 0;
+	padding: 20px;
+	overflow: auto;
+}
+
+.details .form-body h2 {
+	margin-left: 20px;
+	margin-bottom: 10px;
+}
+
+.details .form-actions {
+	padding: 17px 20px 18px;
+	background-color: whiteSmoke;
+	border-top: 1px solid #E5E5E5;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	text-align: right;
+	margin: 0;
+}
+
+.details .form-actions .btn {
+	margin: 0 5px;
+}
+
+.btn.pull-right i[class^="icon-"] {
+	margin-left: 5px;
+	margin-right: 0px;
+}
+
+.btn[class!="pull-right"] i[class^="icon-"] {
+	margin-right: 5px;
+}
+
+.btn i[class^="icon-"]:before {
+	vertical-align: middle;
+}
+
+.dashboard-container {
+	width: 85%;
+	margin: 0 auto;
+}
+
+.hero-unit {
+	float: left;
+	width: 50%;
+	margin: 10px auto;
+	background-color: #EFEFEF;
+	margin: 30px 0;
+}
+
+.hero-unit h2 {
+	margin: 10px 0;
+}
+
+.hero-unit.solo {
+	float: none;
+	margin: 0 auto;
+}
+
+.dashboard-head {
+	margin-bottom: 30px;
+}
+
+/* Remove stupid border radius' from twitter bootstrap */
+* {
+border-radius: 0px !important;
+-webkit-border-radius: 0px !important;
+-moz-border-radius: 0px !important;
 }

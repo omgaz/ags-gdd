@@ -4,7 +4,7 @@ var crypto = require('crypto'),
 
 UserSchema.add({
   "name": String,
-  "email": { type: String, index: { unique: true } },
+  "email": { type: String, index: true, unique: true },
 
   "hashed_password": String,
   "salt": String,
