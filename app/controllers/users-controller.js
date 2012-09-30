@@ -30,8 +30,21 @@ module.exports = function (app, auth) {
       });
     },
 
-    signIn: function (req, res, next) {
-      next();
+    validateLogin: function (req, res, next) {
+      User.find({email: req.body.user.email}, function(err, user) {
+        console.log("USER: ", user);
+        console.log(req.body.user.password);
+        if(!err) {
+          if(user.authenticate(req.body.user.password)) {
+            req.session.currentUser = user;
+            res.redirect("/");
+          } else {
+            next();
+          }
+        } else {
+          next();
+        }
+      });
     }
   };
 
@@ -90,6 +103,18 @@ module.exports = function (app, auth) {
     res.json({
       "status": "success",
       "redirect": "/"
+    });
+  });
+
+  /**
+   * Validate Login
+   * Example usage:
+   *   $.post("/validate-login", {user: {email:"me@omgaz.co.uk", password: "password1"}}, function(data) {console.log(data);});
+  **/
+  app.post('/validate-login', UserMiddleware.validateLogin, function (req, res) {
+    res.json({
+      "status": "error",
+      "errorMessage": ErrorMessages["2"]
     });
   });
 

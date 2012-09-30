@@ -18,6 +18,10 @@
 
 		findByEmail: function (email, callback) {
 			this.find({ "email": email}, callback || function(data) {});
+		},
+
+		validateLogin: function (email, password, callback) {
+			$.post("/validate-login", {"user": {"email": email, "password": password}}, callback || function(data) {});
 		}
 	};
 
@@ -90,11 +94,76 @@
 		}
 	};
 
+	GDD.Widgets.LoginWidget = function () {
+		this.init();
+	};
+	
+
+	GDD.Widgets.LoginWidget.prototype = {
+		init: function () {
+			this.bindUI();
+			this.bindEvents();
+		},
+
+		bindUI: function () {
+			this.container = $(".login");
+
+			this.errorContainer = this.container.find(".errorContainer");
+
+			this.emailField = this.container.find("#loginEmail");
+			this.passwordField = this.container.find("#loginPassword");
+
+			this.submitButton = this.container.find("a.btn.submit");
+		},
+
+		bindEvents: function () {
+			this.submitButton.click( $.proxy(this.buttonClick, this ) );
+		},
+
+		buttonClick: function(e) {
+			e.preventDefault();
+			if(!this.submitButton.is(".disabled")) {
+				this.submitButton.addClass("disabled");
+				this.submitButton.find("span.text").text("Signing In...");
+				this.submitButton.find("i").removeClass("icon-signin").addClass("icon-time");
+				this.validateLogin(this.emailField.val(), this.passwordField.val());
+			}
+		},
+
+		showError: function (errorMessage) {
+			this.clearErrors();
+			this.errorContainer.append( $(this.errorMarkup.supplant({error: errorMessage})) );
+		},
+
+		clearErrors: function () {
+			this.errorContainer.find("*").remove();
+		},
+
+		validateLogin: function (email, password) {
+			GDD.Users.validateLogin(email, password, $.proxy( this.onValidateCallback, this ));
+		},
+
+		onValidateCallback: function (data) {
+
+			if(data.status === "error") {
+				this.showError(data.errorMessage);
+				this.submitButton.removeClass("disabled");
+				this.submitButton.find("span.text").text("Register");
+				this.submitButton.find("i").removeClass("icon-time").addClass("icon-signin");
+			} else if (data.status === "success") {
+				this.clearErrors();
+				this.submitButton.addClass("btn-success").removeClass(".btn-primary").find("span.text").text("Success");
+				this.submitButton.find("i").removeClass("icon-time").addClass("icon-thumbs-up");
+			}
+		}
+	};
+
 	$(document).ready(function () {
 		for (var i = window.widgets.length - 1; i >= 0; i--) {
 			var widget = window.widgets[i];
 			try {
 				new GDD.Widgets[widget];
+				console.log("Registered widget: " + widget);
 			} catch (e) {
 				console.log("Cannot find widget: " + widget);
 			}
