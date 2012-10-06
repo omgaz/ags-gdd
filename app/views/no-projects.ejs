@@ -11,19 +11,22 @@
 		<div class="page-header">
 			<h2>Create your first project</h2>
 		</div>
-		<form>
-			<div class="alert alert-error">
-			Oh Noes!
-			</div>
+		<form class="create-project">
+			<div class="errorContainer"></div>
 			<label>Project Title</label>
 			<div class="input-prepend">
-				<span class="add-on"><i class="icon-pencil"></i></span><input class="span4" id="prependedInput" size="16" type="text" placeholder="title">
+				<span class="add-on"><i class="icon-pencil"></i></span><input class="span4" id="title" size="16" type="text" placeholder="title" />
 			</div>
 
 			<div class="form-actions">
-				<a class="btn btn-success pull-right" href="#">Create <i class="icon-thumbs-up"></i></a>
+				<a class="btn btn-primary pull-right submit" href="#">Create <i class="icon-save"></i></a>
 			</div>
 		</form>
 	</div>
 
 </div>
+
+<script type="text/javascript">
+	// Page widgets
+	window.widgets = ["CreateProjectWidget"];
+</script>

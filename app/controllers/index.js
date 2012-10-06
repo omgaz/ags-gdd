@@ -1,13 +1,14 @@
 module.exports = function (app, auth) {
 	app.get('/', function (req, res) {
 
-		console.log("req.session.currentUser: ", req.session.currentUser);
+		console.log(">   LOG  Current User:", req.session.currentUser.email);
+		console.log(">   LOG  Current Story:", req.session.currentUser.current_story? req.session.currentUser.current_story : "undefined");
 
 		if(typeof req.session.currentUser !== "undefined") {
 			if(req.session.currentUser.current_story) {
 
 			} else {
-				res.render("no-project", {
+				res.render("no-projects", {
 					title: 'Welcome'
 				});
 			}

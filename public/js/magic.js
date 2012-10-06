@@ -25,6 +25,13 @@
 		}
 	};
 
+	GDD.Story = {
+		// GDD.Story.create("My Adventure", function(data) { console.log(data); });
+		create: function (name, callback) {
+			$.post("/create-project", {"story": {"name": name}}, callback || function(data) {});
+		}
+	};
+
 
 	GDD.Widgets = {};
 
@@ -152,6 +159,72 @@
 				this.submitButton.removeClass("disabled");
 				this.submitButton.find("span.text").text("Register");
 				this.submitButton.find("i").removeClass("icon-time").addClass("icon-signin");
+			} else if (data.status === "success") {
+				this.clearErrors();
+				this.submitButton.addClass("btn-success").removeClass(".btn-primary").find("span.text").text("Success");
+				this.submitButton.find("i").removeClass("icon-time").addClass("icon-thumbs-up");
+				window.location.reload();
+			}
+		}
+	};
+
+	GDD.Widgets.CreateProjectWidget = function () {
+		this.init();
+	};
+	
+
+	GDD.Widgets.CreateProjectWidget.prototype = {
+		errorMarkup: '<div class="alert alert-error">{error}</div>',
+		
+		init: function () {
+			this.bindUI();
+			this.bindEvents();
+		},
+
+		bindUI: function () {
+			this.container = $(".create-project");
+
+			this.errorContainer = this.container.find(".errorContainer");
+
+			this.titleField = this.container.find("#title");
+
+			this.submitButton = this.container.find("a.btn.submit");
+		},
+
+		bindEvents: function () {
+			this.submitButton.click( $.proxy(this.buttonClick, this ) );
+		},
+
+		buttonClick: function(e) {
+			e.preventDefault();
+			if(!this.submitButton.is(".disabled")) {
+				this.submitButton.addClass("disabled");
+				this.submitButton.find("span.text").text("Creating Project...");
+				this.submitButton.find("i").removeClass("icon-save").addClass("icon-time");
+				this.createProject(this.titleField.val());
+			}
+		},
+
+		showError: function (errorMessage) {
+			this.clearErrors();
+			this.errorContainer.append( $(this.errorMarkup.supplant({error: errorMessage})) );
+		},
+
+		clearErrors: function () {
+			this.errorContainer.find("*").remove();
+		},
+
+		createProject: function (title) {
+			GDD.Story.create(title, $.proxy( this.onCreateCallback, this ));
+		},
+
+		onCreateCallback: function (data) {
+
+			if(data.status === "error") {
+				this.showError(data.errorMessage);
+				this.submitButton.removeClass("disabled");
+				this.submitButton.find("span.text").text("Create");
+				this.submitButton.find("i").removeClass("icon-time").addClass("icon-save");
 			} else if (data.status === "success") {
 				this.clearErrors();
 				this.submitButton.addClass("btn-success").removeClass(".btn-primary").find("span.text").text("Success");
