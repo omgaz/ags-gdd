@@ -31,13 +31,13 @@ module.exports = function (app, auth) {
     },
 
     validateLogin: function (req, res, next) {
-      User.find({email: req.body.user.email}, function(err, user) {
-        console.log("USER: ", user);
-        console.log(req.body.user.password);
+      User.findOne({email: req.body.user.email}, function(err, user) {
         if(!err) {
-          if(user.authenticate(req.body.user.password)) {
+          if(user && user.authenticate(req.body.user.password)) {
             req.session.currentUser = user;
-            res.redirect("/");
+            res.json({
+              "status": "success"
+            });
           } else {
             next();
           }
@@ -89,7 +89,6 @@ module.exports = function (app, auth) {
   **/
   app.post('/get-users', function(req, res) {
     User.find(req.body.query || {}, "name email _id", function(err, users) {
-      console.log("Users:", users);
       res.json(users);
     });
   });
@@ -121,7 +120,7 @@ module.exports = function (app, auth) {
 
   // Handles session Logout
   app.get('/logout', auth.requiresLogin, function (req, res) {
-    req.logout();
+    delete req.session.currentUser;
     res.redirect('/');
   });
 

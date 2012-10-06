@@ -4,8 +4,8 @@
  */
 
 exports.requiresLogin = function (req, res, next) {
-  if (!req.loggedIn) {
-    req.flash('notice', 'You are not authorised. Please login.');
+  if (!req.session.currentUser) {
+    console.log('notice', 'You are not authorised. Please login.');
     res.redirect('/');
   }
   next();

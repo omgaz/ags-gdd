@@ -100,6 +100,8 @@
 	
 
 	GDD.Widgets.LoginWidget.prototype = {
+		errorMarkup: '<div class="alert alert-error">{error}</div>',
+		
 		init: function () {
 			this.bindUI();
 			this.bindEvents();
@@ -154,6 +156,7 @@
 				this.clearErrors();
 				this.submitButton.addClass("btn-success").removeClass(".btn-primary").find("span.text").text("Success");
 				this.submitButton.find("i").removeClass("icon-time").addClass("icon-thumbs-up");
+				window.location.reload();
 			}
 		}
 	};
