@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%- appName %> - <%- title %></title>
+		<link rel="stylesheet" type="text/css" href="/css/screen.css">
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/css/font-awesome.css">
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+	</head>
+
+	<body>
+		<div class="navbar">
+			<a class="brand" href="#">
+				Adventure Dossier
+			</a>
+
+			<ul class="nav menu">
+				<li class="active"><a href="#"><i class="icon-book"></i></a></li>
+				<li><a href="#"><i class="icon-tasks"></i></a></li>
+				<li><a href="#"><i class="icon-envelope"></i></a></li>
+				<li><a href="#"><i class="icon-group"></i></a></li>
+			</ul>
+
+			<ul class="nav user pull-right">
+				<li>logged in as </li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">magintz <i class="icon-sort-down caret"></i></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li class="divider"></li>
+						<li><a href="#">Separated link</a></li>
+					</ul>
+				</li>
+			</ul>
+	    </div>
+
+		<div class="subnav">
+			<ul class="nav">
+				<li><a href="#">Intro</a></li>
+				<li class="active"><a href="#">Act I</a></li>
+				<li><a href="#">Act II</a></li>
+				<li><a href="" class="add"><span class="icon-plus-sign"></span></a></li>
+			</ul>
+		</div>
+
+
+
+
+		<div id="palette">
+
+			<div class="sections">
+				<ul>
+					<li><a href="#"><i class="icon-file"></i></a></li>
+					<li><a href="#"><i class="icon-globe"></i></a></li>
+					<li class="active"><a href="#"><i class="icon-user"></i></a></li>
+					<li><a href="#"><i class="icon-trophy"></i></a></li>
+					<li><a href="#"><i class="icon-key"></i></a></li>
+					<li><a href="#"><i class="icon-comment"></i></a></li>
+				</ul>
+
+				<div class="gift"><a href="#"><i class="icon-gift"></i><p>Buy Me a Beer</p></a></div>
+			</div>
+
+			<%- body %>
+		</div>
+
+		<script type="text/javascript" src="/js/magic.js"></script>
+	</body>
+</html>

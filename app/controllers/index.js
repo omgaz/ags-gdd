@@ -6,7 +6,9 @@ module.exports = function (app, auth) {
 
 		if(typeof req.session.currentUser !== "undefined") {
 			if(req.session.currentUser.current_story) {
-
+				res.render("story/view", {
+					layout: "layouts/main"
+				});
 			} else {
 				res.render("no-projects", {
 					title: 'Welcome'
